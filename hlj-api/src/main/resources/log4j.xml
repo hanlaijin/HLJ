@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+    <!-- name提供给logger或者root调用 -->
+    <!-- 不同的输出类型对应着不同的calss，如控制台输出class对应着 org.apache.log4j.ConsoleAppender -->
+    <appender name="console" class="org.apache.log4j.ConsoleAppender">
+        <!-- 保存字符集 -->
+        <param name="encoding" value="UTF-8"/>
+        <!-- 输出到控制台 -->
+        <param name="target" value="System.out"/>
+        <!-- layout表示输出方式，可以多种，class值区分，PatternLayout表示自定义格式 -->
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{ISO8601} %-5p %-40.40c{3} %m %n"/>
+        </layout>
+        <!--filter过滤器设置输出的级别:ALL < DEBUG < INFO < WARN < ERROR < FATAL < OFF-->
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <param name="levelMin" value="debug"/>
+            <param name="levelMax" value="warn"/>
+            <param name="AcceptOnMatch" value="true"/>  <!-- 答案：http://bbs.csdn.net/topics/350195913 -->
+        </filter>
+    </appender>
+
+    <!-- 输入到文件，并且按日期生成新文件-->
+    <appender name="hlj" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="/github/hanlaijin/logs/hlj.log"/>
+        <!-- 是否项目重启继续保存之前日志 -->
+        <param name="Append" value="true"/>
+        <!-- 记录所有类型日志，记录它和比它等级高的日志all<debug -->
+        <param name="threshold" value="all"/>
+        <param name="DatePattern" value="'.'yyyy-MM-dd'.log'"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{ISO8601} %-5p %-40.40c{3} %m %n"/>
+        </layout>
+    </appender>
+
+    <appender name="error" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="/github/hanlaijin/logs/error.log"/>
+        <param name="Append" value="true"/>
+        <param name="DatePattern" value="'.'yyyy-MM-dd'.log'"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{ISO8601} %-5p %-40.40c{3} %m %n"/>
+        </layout>
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <param name="LevelMax" value="error"/>
+            <param name="LevelMin" value="error"/>
+        </filter>
+    </appender>
+
+    <root>
+        <!-- 限定记录等级 -->
+        <level value="info"></level>
+        <!-- 调用记录方式 -->
+        <appender-ref ref="console"/>
+        <appender-ref ref="hlj"/>
+        <appender-ref ref="error"/>
+    </root>
+
+</log4j:configuration>
