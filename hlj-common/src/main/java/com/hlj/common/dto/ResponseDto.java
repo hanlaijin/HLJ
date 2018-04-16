@@ -1,5 +1,8 @@
 package com.hlj.common.dto;
 
+import lombok.Data;
+
+@Data
 public class ResponseDto<T> {
     private int code;
     private String msg;
