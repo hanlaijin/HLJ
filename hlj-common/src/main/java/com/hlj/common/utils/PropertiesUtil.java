@@ -1,9 +1,8 @@
 package com.hlj.common.utils;
 
-import com.google.common.collect.Maps;
-
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
@@ -33,7 +32,7 @@ public class PropertiesUtil {
     }
 
     public static Map<String, String> getValues(String fileName){
-        Map<String, String> map = Maps.newHashMap();
+        Map<String, String> map = new HashMap<>();
         InputStream fileInputStream = null;
         try {
             fileInputStream = PropertiesUtil.class.getClassLoader().getResourceAsStream(fileName);

@@ -1,6 +1,5 @@
 package com.hlj.common.utils;
 
-import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * Created by hanlaijin@xiaomi.com on 17-9-30.
  */
-@Slf4j
 public class IPUtail {
 
     public static String getIpAddress(HttpServletRequest request) {
@@ -28,7 +26,6 @@ public class IPUtail {
                 }
             }
         }
-        log.info("ip = {}", request.getRemoteAddr());
         return request.getRemoteAddr();
     }
 }
