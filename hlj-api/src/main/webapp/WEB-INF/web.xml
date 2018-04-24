@@ -61,16 +61,16 @@
     </filter-mapping>
 
     <!-- 配置自定义拦截器 @WebFilter -->
-    <filter>
-        <filter-name>test</filter-name>
-        <filter-class>com.hlj.common.filters.LoginFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>test</filter-name>
-        <url-pattern>/*</url-pattern>
-        <!-- 过滤的类型，默认为REQUEST -->
-        <!--<dispatcher></dispatcher>-->
-    </filter-mapping>
+    <!--<filter>-->
+        <!--<filter-name>test</filter-name>-->
+        <!--<filter-class>com.hlj.common.filters.LoginFilter</filter-class>-->
+    <!--</filter>-->
+    <!--<filter-mapping>-->
+        <!--<filter-name>test</filter-name>-->
+        <!--<url-pattern>/*</url-pattern>-->
+        <!--&lt;!&ndash; 过滤的类型，默认为REQUEST &ndash;&gt;-->
+        <!--&lt;!&ndash;<dispatcher></dispatcher>&ndash;&gt;-->
+    <!--</filter-mapping>-->
 
     <!-- 欢迎界面 -->
     <welcome-file-list>

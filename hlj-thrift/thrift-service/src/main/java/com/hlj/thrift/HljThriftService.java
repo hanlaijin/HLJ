@@ -2,12 +2,14 @@ package com.hlj.thrift;
 
 import com.facebook.swift.codec.ThriftField;
 import com.hlj.common.dtos.thrift.CallbackFuture;
+import org.springframework.stereotype.Service;
 
+@Service
 public class HljThriftService implements HljService.Async{
     @Override
     public CallbackFuture<String> ping() {
         CallbackFuture<String> result = new CallbackFuture<String>();
-        result.set("ping");
+        result.set("pong");
         return result;
     }
 

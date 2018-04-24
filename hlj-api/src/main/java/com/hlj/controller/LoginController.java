@@ -47,7 +47,7 @@ public class LoginController {
             LoginUserHelper.executeLogin(user, response);
             LoginResponse result = userService.buildLoginResponse(user);
             return ResponseUtil.success(result);
-        } catch (TException e) {
+        } catch (Exception e) {
             log.error("login error = {}", e);
             return ResponseUtil.error(ResultEnum.SYSTEM_ERROR);
         }

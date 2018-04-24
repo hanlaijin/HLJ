@@ -23,7 +23,7 @@
         </dependency>
         <dependency>
             <groupId>com.hlj</groupId>
-            <artifactId>hlj-thrift-service</artifactId>
+            <artifactId>hlj-thrift-iface</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
