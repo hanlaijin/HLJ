@@ -13,5 +13,5 @@
     <!-- 激活@Autowired,@Required,@PostConstruct等注解 -->
     <context:annotation-config/>
 
-    <context:component-scan base-package="com.hlj.controller"/>
+    <context:component-scan base-package="com.hlj"/>
 </beans>

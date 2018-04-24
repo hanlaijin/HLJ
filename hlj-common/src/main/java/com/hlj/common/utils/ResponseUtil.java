@@ -1,13 +1,19 @@
 package com.hlj.common.utils;
 
-import com.hlj.common.dto.ResponseDto;
+import com.hlj.common.dtos.response.Response;
+import com.hlj.common.enums.ResultEnum;
 
 public class ResponseUtil {
-    public static ResponseDto success() {
-        return new ResponseDto();
+    public static Response success() {
+        return new Response();
     }
 
-    public static ResponseDto success(Object o) {
-        return new ResponseDto(o);
+    public static Response success(Object data) {
+        return  new Response(data);
     }
+
+    public static Response error(ResultEnum error) {
+        return new Response(error.getCode(), error.getMessage());
+    }
+
 }

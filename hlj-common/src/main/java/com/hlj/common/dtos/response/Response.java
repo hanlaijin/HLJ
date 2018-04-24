@@ -1,34 +1,34 @@
-package com.hlj.common.dto;
+package com.hlj.common.dtos.response;
 
 import lombok.Data;
 
 @Data
-public class ResponseDto<T> {
+public class Response<T> {
     private int code;
     private String msg;
     private T data;
-    private PageDto page;
+    private Page page;
 
-    public ResponseDto() {
+    public Response() {
         this.code = 200;
         this.msg = "success";
     }
 
-    public ResponseDto(int code, String msg) {
+    public Response(int code, String msg) {
         this.code = code;
         this.msg = msg;
     }
 
-    public ResponseDto(T data) {
+    public Response(T data) {
         this.code = 200;
         this.msg = "success";
         this.data = data;
     }
 
-    public ResponseDto(T data, PageDto pageDto) {
+    public Response(T data, Page page) {
         this.code = 200;
         this.msg = "success";
         this.data = data;
-        this.page = pageDto;
+        this.page = page;
     }
 }

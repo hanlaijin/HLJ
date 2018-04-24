@@ -1,16 +1,18 @@
 package com.hlj.controller;
 
 import com.google.common.collect.Sets;
-import com.hlj.common.dto.ResponseDto;
+import com.hlj.common.dtos.response.Response;
 import com.hlj.common.utils.RedisUtil;
 import com.hlj.common.utils.ResponseUtil;
+import com.hlj.service.PingService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.apache.thrift.TException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import redis.clients.jedis.Jedis;
 
+import javax.annotation.Resource;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
@@ -20,6 +22,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicInteger;
 
+
 @Slf4j
 @RestController
 public class PingController {
@@ -27,15 +30,18 @@ public class PingController {
     private static final String KEY = "hlj::list";
     private static AtomicInteger count = new AtomicInteger(1);
 
+    @Resource
+    private PingService pingService;
+
     @GetMapping(value = "/ping")
     @ResponseBody
-    public ResponseDto ping() {
-        return ResponseUtil.success();
+    public Response ping() throws TException {
+        return ResponseUtil.success(pingService.ping());
     }
 
     @GetMapping(value = "/get")
     @ResponseBody
-    public ResponseDto<String> get() {
+    public Response<String> get() {
         Jedis jedis = RedisUtil.getJedis();
         String value = null;
         try {
