@@ -55,8 +55,8 @@ public class PingController {
     }
 
     public static void main(String[] args) throws Exception {
-//        push();
-        pop();
+        push();
+//        pop();
     }
 
     public static void push() {

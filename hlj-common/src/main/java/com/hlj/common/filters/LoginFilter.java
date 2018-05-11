@@ -32,6 +32,7 @@ public class LoginFilter implements Filter {
             }
             if (user.getPassword().equals(password)) {
                 LoginUserHelper.executeLogin(user, response);
+                filterChain.doFilter(servletRequest, servletResponse);
                 return;
             } else {
                 LoginUserHelper.removeCookie(response);

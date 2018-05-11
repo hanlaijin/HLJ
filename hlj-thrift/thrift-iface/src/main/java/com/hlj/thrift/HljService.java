@@ -21,6 +21,11 @@ public interface HljService
             @ThriftField(value=1, name="mobile", requiredness=Requiredness.NONE) final String mobile
         );
 
+        @ThriftMethod(value = "getFromRedis")
+        ListenableFuture<String> getFromRedis(
+            @ThriftField(value=1, name="key", requiredness=Requiredness.NONE) final String key
+        );
+
         @ThriftMethod(value = "saveUserToRedis")
         ListenableFuture<Boolean> saveUserToRedis(
             @ThriftField(value=1, name="user", requiredness=Requiredness.NONE) final User user
@@ -37,6 +42,11 @@ public interface HljService
     @ThriftMethod(value = "getUserFromDB")
     User getUserFromDB(
         @ThriftField(value=1, name="mobile", requiredness=Requiredness.NONE) final String mobile
+    ) throws org.apache.thrift.TException;
+
+    @ThriftMethod(value = "getFromRedis")
+    String getFromRedis(
+        @ThriftField(value=1, name="key", requiredness=Requiredness.NONE) final String key
     ) throws org.apache.thrift.TException;
 
     @ThriftMethod(value = "saveUserToRedis")

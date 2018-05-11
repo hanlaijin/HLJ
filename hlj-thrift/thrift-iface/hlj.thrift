@@ -40,6 +40,7 @@ service HljService {
     User getUserFromDB(1:string mobile);
 
     //redis
+    string getFromRedis(1:string key);
     bool saveUserToRedis(1:User user);
     User getUserFromRedis(1:string mobile);
 }

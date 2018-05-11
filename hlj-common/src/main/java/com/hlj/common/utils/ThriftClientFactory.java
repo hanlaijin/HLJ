@@ -18,6 +18,7 @@ public class ThriftClientFactory {
         try {
             t = (T) clientManager.createClient(connector, type).get();
         } catch (Exception e) {
+            e.printStackTrace();
             log.error("create thrift client failed.", e);
         }
         return t;
@@ -25,6 +26,7 @@ public class ThriftClientFactory {
 
     public static void main(String[] args) throws TException {
         HljService service = ThriftClientFactory.createThriftClient(HljService.class);
+        System.out.print(service);
         System.out.println(service.ping());
     }
 }
