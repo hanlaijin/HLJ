@@ -1,35 +1,21 @@
 package com.hlj.thrift;
 
 import com.facebook.swift.codec.ThriftField;
-import com.google.common.collect.Sets;
 import com.hlj.common.dtos.thrift.CallbackFuture;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
-
-import java.util.Set;
 
 @Service
 public class HljThriftService implements HljService.Async {
 
-    @Autowired
-    private StringRedisTemplate redisTemplate;
+//    @Autowired
+//    private RedisTemplate<String, Object> redisTemplate;
+
 
     @Override
     public CallbackFuture<String> ping() {
         CallbackFuture<String> result = new CallbackFuture<String>();
-        try {
-            Set<String> list = Sets.newHashSet();
-            for (int i = 0; i < 100; i++) {
-                list.add(String.valueOf(i));
-            }
-            for (String s : list) {
-                redisTemplate.opsForList().leftPush("hlj::list", s);
-            }
-            result.set("pong");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        String value = (String) redisTemplate.opsForValue().get("key");
+//        result.set(value);
         return result;
     }
 
@@ -41,9 +27,10 @@ public class HljThriftService implements HljService.Async {
     }
 
     @Override
-    public CallbackFuture<String> getFromRedis(@ThriftField(value = 1, name = "key", requiredness = ThriftField.Requiredness.NONE) String key) {
+    public CallbackFuture<String> getFromQueue(@ThriftField(value = 1, name = "key", requiredness = ThriftField.Requiredness.NONE) String key) {
         CallbackFuture<String> result = new CallbackFuture<String>();
-
+//        String value = RedisUtil.getJedis().rpop(key);
+//        result.set(value);
         return result;
     }
 

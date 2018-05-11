@@ -2,7 +2,6 @@ package com.hlj.controller;
 
 import com.google.common.collect.Sets;
 import com.hlj.common.dtos.response.Response;
-import com.hlj.common.utils.RedisUtil;
 import com.hlj.common.utils.ResponseUtil;
 import com.hlj.service.PingService;
 import lombok.extern.slf4j.Slf4j;
@@ -10,7 +9,6 @@ import org.apache.thrift.TException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import redis.clients.jedis.Jedis;
 
 import javax.annotation.Resource;
 import java.io.BufferedReader;
@@ -41,22 +39,14 @@ public class PingController {
 
     @GetMapping(value = "/get")
     @ResponseBody
-    public Response<String> get() {
-        Jedis jedis = RedisUtil.getJedis();
-        String value = null;
-        try {
-            value = RedisUtil.getJedis().rpop(KEY);
-        } catch (Exception e) {
-            RedisUtil.returnBrokenResource(jedis);
-        } finally {
-            RedisUtil.returnResource(jedis);
-        }
+    public Response<String> get() throws TException {
+        String value = pingService.get(KEY);
         return ResponseUtil.success(value);
     }
 
     public static void main(String[] args) throws Exception {
-        push();
-//        pop();
+//        push();
+        pop();
     }
 
     public static void push() {
@@ -64,14 +54,11 @@ public class PingController {
         for (int i = 0; i < 100000; i++) {
             list.add(String.valueOf(i));
         }
-        for (String s : list) {
-            RedisUtil.getJedis().lpush(KEY, s);
-        }
     }
 
     public static void pop() {
-        ExecutorService exec = Executors.newFixedThreadPool(30);
-        for (int index = 0; index < 500; index++) {
+        ExecutorService exec = Executors.newFixedThreadPool(50);
+        for (int index = 0; index < 50; index++) {
             final int NO = index;
             exec.execute(() -> {
                 try {
@@ -88,8 +75,8 @@ public class PingController {
                     }
                     br.close();
                     isr.close();
-
                 } catch (Exception e) {
+                    System.out.println(count.getAndIncrement());
                     e.printStackTrace();
                 }
             });

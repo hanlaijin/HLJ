@@ -16,6 +16,8 @@ public class ThreadLocalTest {
     }
 
     public static void main(String[] args) {
+        Object o = new String("22");
+        System.out.println((String)o);
         ThreadLocalTest test = new ThreadLocalTest();
         System.out.println(test.get());
     }
