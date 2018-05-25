@@ -19,11 +19,11 @@
 
     <!-- 将url中的请求参数，映射到controller中的输入参数 -->
     <mvc:annotation-driven>
-        <mvc:message-converters>
+        <!--<mvc:message-converters>-->
             <!--<bean class="org.springframework.http.converter.StringHttpMessageConverter"/>-->
             <!--依赖com.fasterxml.jackson.core包-->
-            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
-        </mvc:message-converters>
+            <!--<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>-->
+        <!--</mvc:message-converters>-->
     </mvc:annotation-driven>
 
     <!--&lt;!&ndash; true表示用cglib &ndash;&gt;-->
