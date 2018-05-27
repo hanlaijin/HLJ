@@ -52,18 +52,19 @@ public class PingController {
     @ResponseBody
     public Response<String> get(HttpServletRequest request) throws Exception {
         PingRequest ping = RequestUtil.getRequestDto(request, PingRequest.class);
-        log.info("no ping = {}", ping);
-        return ResponseUtil.success();
+        Jedis jedis = RedisUtil.getJedis();
+        String value = jedis.rpop("hlj::queue");
+        RedisUtil.returnBrokenResource(jedis);
+        return ResponseUtil.success(value);
     }
 
     public static void main(String[] args) throws Exception {
-        OkHttpClient httpClient = new OkHttpClient.Builder().build();
-        PingAPI pingAPI = new Retrofit.Builder()
-                .baseUrl("http://localhost:8080")
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(httpClient)
-                .build()
-                .create(PingAPI.class);
+//        send();
+//        push();
+//        pop();
+    }
+
+    public static void send() throws Exception {
 //        PingAPI realSubject = new RestAdapter.Builder()
 //                .setEndpoint("https://api.weixin.qq.com")
 //                .setLogLevel(RestAdapter.LogLevel.FULL)
@@ -74,17 +75,26 @@ public class PingController {
 //                    }
 //                })
 //                .build().create(PingAPI.class);
+    }
+
+    public static void send2() throws Exception {
+        OkHttpClient httpClient = new OkHttpClient.Builder().build();
+        PingAPI pingAPI = new Retrofit.Builder()
+                .baseUrl("http://localhost:8080")
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(httpClient)
+                .build()
+                .create(PingAPI.class);
         Call<Response> call = pingAPI.ping("fk1", "fk2", 3L);
         Response response = call.execute().body();
         System.out.println(response);
-//        push();
-//        pop();
     }
 
     public static void push() {
         for (int i = 0; i < 5000; i++) {
             Jedis jedis = RedisUtil.getJedis();
-            jedis.setex("hlj::" + i, 600, "what" + i);
+            jedis.lpush("hlj::queue", String.valueOf(i));
+//            jedis.setex("hlj::" + i, 600, "what" + i);
             RedisUtil.returnBrokenResource(jedis);
         }
     }
@@ -97,7 +107,7 @@ public class PingController {
                 try {
                     Thread.sleep(new Random().nextInt(1000));
                     long time1 = System.currentTimeMillis();
-                    URL url = new URL("http://localhost:8080/get?key=" + count.getAndIncrement());
+                    URL url = new URL("http://localhost:8080/get?k1=" + count.getAndIncrement());
                     InputStreamReader isr = new InputStreamReader(url.openStream());
                     long time2 = System.currentTimeMillis();
                     BufferedReader br = new BufferedReader(isr);

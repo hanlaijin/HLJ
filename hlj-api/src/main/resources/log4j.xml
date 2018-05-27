@@ -23,7 +23,7 @@
 
     <!-- 输入到文件，并且按日期生成新文件-->
     <appender name="hlj" class="org.apache.log4j.DailyRollingFileAppender">
-        <param name="File" value="D:\github/hanlaijin/logs/hlj.log"/>
+        <param name="File" value="/home/hanlaijin/software/workspace/hanlaijin/log/api.log"/>
         <!-- 是否项目重启继续保存之前日志 -->
         <param name="Append" value="true"/>
         <!-- 记录所有类型日志，记录它和比它等级高的日志all<debug -->
@@ -35,7 +35,7 @@
     </appender>
 
     <appender name="error" class="org.apache.log4j.DailyRollingFileAppender">
-        <param name="File" value="D:\github/hanlaijin/logs/error.log"/>
+        <param name="File" value="/home/hanlaijin/software/workspace/hanlaijin/log/error.log"/>
         <param name="Append" value="true"/>
         <param name="DatePattern" value="'.'yyyy-MM-dd'.log'"/>
         <layout class="org.apache.log4j.PatternLayout">

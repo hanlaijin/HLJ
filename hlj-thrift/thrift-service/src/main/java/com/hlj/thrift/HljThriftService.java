@@ -1,21 +1,20 @@
 package com.hlj.thrift;
 
 import com.facebook.swift.codec.ThriftField;
-import com.hlj.common.dtos.thrift.CallbackFuture;
+import com.hlj.thrift.common.CallbackFuture;
+import com.hlj.thrift.dao.UserReposity;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class HljThriftService implements HljService.Async {
-
-//    @Autowired
-//    private RedisTemplate<String, Object> redisTemplate;
-
+    @Autowired
+    private UserReposity userReposity;
 
     @Override
     public CallbackFuture<String> ping() {
         CallbackFuture<String> result = new CallbackFuture<String>();
-//        String value = (String) redisTemplate.opsForValue().get("key");
-//        result.set(value);
+        System.out.print(userReposity.getByMobile("18345979265"));
         return result;
     }
 
@@ -29,8 +28,7 @@ public class HljThriftService implements HljService.Async {
     @Override
     public CallbackFuture<String> getFromQueue(@ThriftField(value = 1, name = "key", requiredness = ThriftField.Requiredness.NONE) String key) {
         CallbackFuture<String> result = new CallbackFuture<String>();
-//        String value = RedisUtil.getJedis().rpop(key);
-//        result.set(value);
+
         return result;
     }
 

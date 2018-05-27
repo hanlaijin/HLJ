@@ -4,12 +4,11 @@ import com.hlj.common.dtos.login.LoginRequest;
 import com.hlj.common.dtos.login.LoginResponse;
 import com.hlj.common.dtos.response.Response;
 import com.hlj.common.enums.ResultEnum;
-import com.hlj.common.utils.LoginUserHelper;
+import com.hlj.util.LoginUserHelper;
 import com.hlj.common.utils.ResponseUtil;
 import com.hlj.service.UserService;
 import com.hlj.thrift.User;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.thrift.TException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,7 +31,7 @@ public class LoginController {
         return "login";
     }
 
-    @RequestMapping(value = "/doLogin", method = RequestMethod.POST)
+    @RequestMapping(value = "/do_login", method = RequestMethod.POST)
     @ResponseBody
     public Response doLogin(@ModelAttribute LoginRequest loginRequest, HttpServletResponse response) {
         try {
@@ -47,6 +46,18 @@ public class LoginController {
             LoginUserHelper.executeLogin(user, response);
             LoginResponse result = userService.buildLoginResponse(user);
             return ResponseUtil.success(result);
+        } catch (Exception e) {
+            log.error("login error = {}", e);
+            return ResponseUtil.error(ResultEnum.SYSTEM_ERROR);
+        }
+    }
+
+    @RequestMapping(value = "/logOut", method = RequestMethod.POST)
+    @ResponseBody
+    public Response doLogOut(@ModelAttribute LoginRequest loginRequest, HttpServletResponse response) {
+        try {
+            LoginUserHelper.removeCookie(response);
+            return ResponseUtil.success();
         } catch (Exception e) {
             log.error("login error = {}", e);
             return ResponseUtil.error(ResultEnum.SYSTEM_ERROR);

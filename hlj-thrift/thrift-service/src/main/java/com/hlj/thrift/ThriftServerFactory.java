@@ -10,7 +10,7 @@ import org.springframework.boot.CommandLineRunner;
 
 public class ThriftServerFactory implements CommandLineRunner {
     @Override
-    public void run(String... strings) throws Exception {
+    public void run(String... strings) {
         try {
             ThriftServiceProcessor processor = new ThriftServiceProcessor(new ThriftCodecManager(), ImmutableList.of(), new HljThriftService());
             ThriftServerDef serverDef = ThriftServerDef.newBuilder().listen(12345).withProcessor(processor).build();
@@ -20,9 +20,6 @@ public class ThriftServerFactory implements CommandLineRunner {
             System.out.println("thrift 服务已启动");
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-
         }
-
     }
 }

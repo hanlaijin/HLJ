@@ -1,9 +1,8 @@
 package com.hlj.service;
 
 import com.hlj.aop.AN;
-import com.hlj.common.utils.ThriftClientFactory;
-import com.hlj.controller.PingController;
 import com.hlj.thrift.HljService;
+import com.hlj.thrift.common.ThriftClientFactory;
 import org.apache.thrift.TException;
 import org.springframework.stereotype.Service;
 

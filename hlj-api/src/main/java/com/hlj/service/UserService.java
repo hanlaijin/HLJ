@@ -5,11 +5,11 @@ import com.hlj.common.dtos.login.FunctionDto;
 import com.hlj.common.dtos.login.LoginDto;
 import com.hlj.common.dtos.login.LoginRequest;
 import com.hlj.common.dtos.login.LoginResponse;
-import com.hlj.common.utils.ThriftClientFactory;
 import com.hlj.thrift.Function;
 import com.hlj.thrift.HljService;
 import com.hlj.thrift.Role;
 import com.hlj.thrift.User;
+import com.hlj.thrift.common.ThriftClientFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

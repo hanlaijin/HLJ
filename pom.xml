@@ -12,6 +12,7 @@
         <module>hlj-common</module>
         <module>hlj-thrift/thrift-iface</module>
         <module>hlj-thrift/thrift-service</module>
+        <module>hlj-thrift/thrift-common</module>
     </modules>
     <packaging>pom</packaging>
 

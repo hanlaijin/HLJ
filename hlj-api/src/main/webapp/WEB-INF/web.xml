@@ -63,7 +63,7 @@
     <!-- 配置自定义拦截器 @WebFilter -->
     <!--<filter>-->
         <!--<filter-name>test</filter-name>-->
-        <!--<filter-class>com.hlj.common.filters.LoginFilter</filter-class>-->
+        <!--<filter-class>com.hlj.filters.LoginFilter</filter-class>-->
     <!--</filter>-->
     <!--<filter-mapping>-->
         <!--<filter-name>test</filter-name>-->
