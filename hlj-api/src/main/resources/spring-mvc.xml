@@ -18,7 +18,7 @@
     <context:component-scan base-package="com.hlj.controller"/>
 
     <!-- 在mvc:resources中配置静态资源，dispatcher会过滤掉他们 -->
-    <!--<mvc:resources mapping="/resources/**" location="/resources/" />-->
+    <!--<mvc:resources mapping="/resources/**" location="" />-->
 
     <!-- 将url中的请求参数，映射到controller中的输入参数 -->
     <mvc:annotation-driven>

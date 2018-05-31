@@ -1,8 +1,7 @@
 package com.hlj.common.dtos.login;
 
-import com.hlj.thrift.User;
 import lombok.Data;
-
+import com.hlj.thrift.User;
 import java.util.List;
 
 @Data

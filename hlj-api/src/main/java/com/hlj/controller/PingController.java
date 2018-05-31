@@ -4,12 +4,10 @@ import com.hlj.common.api.PingAPI;
 import com.hlj.common.dtos.PingRequest;
 import com.hlj.common.dtos.response.Response;
 import com.hlj.common.utils.RedisUtil;
-import com.hlj.common.utils.RequestUtil;
 import com.hlj.common.utils.ResponseUtil;
 import com.hlj.service.PingService;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.OkHttpClient;
-import org.apache.commons.beanutils.BeanUtils;
 import org.apache.thrift.TException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +24,6 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
-import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -45,36 +42,35 @@ public class PingController {
     @GetMapping(value = "/ping")
     @ResponseBody
     public Response ping() throws TException {
-        return ResponseUtil.success(pingService.ping("ffffff"));
+        return ResponseUtil.success(pingService.ping("mac"));
     }
 
     @RequestMapping(value = "/get", method = {RequestMethod.GET})
     @ResponseBody
-    public Response<String> get(HttpServletRequest request) throws Exception {
-        PingRequest ping = RequestUtil.getRequestDto(request, PingRequest.class);
-        Jedis jedis = RedisUtil.getJedis();
-        String value = jedis.rpop("hlj::queue");
-        RedisUtil.returnBrokenResource(jedis);
+    public Response<String> get(HttpServletRequest request, PingRequest ping) throws Exception {
+//        PingRequest ping = RequestUtil.getRequestDto(request, PingRequest.class);
+        log.info("ping request = {}", ping);
+        String value = pingService.get("hlj::queue");
         return ResponseUtil.success(value);
     }
 
     public static void main(String[] args) throws Exception {
-//        send();
+//        send2();
 //        push();
-//        pop();
+        pop();
     }
 
     public static void send() throws Exception {
-//        PingAPI realSubject = new RestAdapter.Builder()
-//                .setEndpoint("https://api.weixin.qq.com")
-//                .setLogLevel(RestAdapter.LogLevel.FULL)
-//                .setLog(new RestAdapter.Log() {
-//                    @Override
-//                    public void log(String message) {
-//                        log.info(message);
-//                    }
-//                })
-//                .build().create(PingAPI.class);
+        PingAPI realSubject = new RestAdapter.Builder()
+                .setEndpoint("https://api.weixin.qq.com")
+                .setLogLevel(RestAdapter.LogLevel.FULL)
+                .setLog(new RestAdapter.Log() {
+                    @Override
+                    public void log(String message) {
+                        log.info(message);
+                    }
+                })
+                .build().create(PingAPI.class);
     }
 
     public static void send2() throws Exception {

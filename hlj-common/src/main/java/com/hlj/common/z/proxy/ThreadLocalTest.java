@@ -1,8 +1,6 @@
 package com.hlj.common.z.proxy;
 
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
-
 import java.net.InetAddress;
 
 /**
@@ -21,7 +19,7 @@ public class ThreadLocalTest {
 
     public static void main(String[] args) throws Exception {
         InetAddress address = InetAddress.getLocalHost();
-        System.out.print(address.getHostAddress());
-        System.out.print(address.getHostName());
+        System.out.println(address.getHostAddress());
+        System.out.println(address.getHostName());
     }
 }
