@@ -1,4 +1,4 @@
-package com.hlj.common.z.proxy;
+package com.hlj.common.z.test;
 
 
 import java.net.InetAddress;
@@ -21,5 +21,8 @@ public class ThreadLocalTest {
         InetAddress address = InetAddress.getLocalHost();
         System.out.println(address.getHostAddress());
         System.out.println(address.getHostName());
+        System.out.println(new ThreadLocalTest().get());
     }
+
+
 }

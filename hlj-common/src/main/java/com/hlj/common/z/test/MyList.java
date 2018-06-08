@@ -1,9 +1,7 @@
-package com.hlj.common.z.proxy;
+package com.hlj.common.z.test;
 
 import lombok.Data;
 import org.apache.commons.lang3.Validate;
-
-import javax.validation.Validation;
 
 /**
  * Created by hanlaijin@xiaomi.com on 18-6-1.
@@ -45,7 +43,7 @@ public class MyList {
             return node;
         }
         Node current = reverse(node);
-        current.next = node;
+        node.next.next = node;
         node.next = null;
         return current;
     }
