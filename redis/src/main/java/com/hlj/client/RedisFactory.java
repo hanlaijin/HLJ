@@ -1,4 +1,4 @@
-package com.hlj.common.utils;
+package com.hlj.client;
 
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
@@ -7,7 +7,7 @@ import redis.clients.jedis.JedisPoolConfig;
 /**
  * Created by hanlaijin@xiaomi.com on 18-5-24.
  */
-public class RedisUtil {
+public class RedisFactory {
 
     private static Object mutex = new Object();
     private static JedisPool pool = null;

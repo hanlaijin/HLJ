@@ -18,6 +18,8 @@
         <module>web</module>
         <module>common</module>
         <module>rootpom</module>
+        <module>dao</module>
+        <module>redis</module>
         <module>thrift/thrift-iface</module>
         <module>thrift/thrift-service</module>
         <module>thrift/thrift-common</module>

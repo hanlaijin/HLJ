@@ -1,7 +1,5 @@
 package com.hlj.thrift;
 
-import com.hlj.thrift.dao.TI;
-import com.hlj.thrift.dao.TIRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

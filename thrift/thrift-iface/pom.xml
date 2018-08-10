@@ -5,10 +5,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <artifactId>hlj-root</artifactId>
         <groupId>com.hlj</groupId>
-        <version>1.1-SNAPSHOT</version>
-        <relativePath>../../pom.xml</relativePath>
+        <artifactId>hlj-rootpom</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../../rootpom/pom.xml</relativePath>
     </parent>
 
     <artifactId>hlj-thrift-iface</artifactId>

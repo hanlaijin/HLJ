@@ -18,10 +18,10 @@ package com.hlj.common.todo;
 //import org.apache.commons.httpclient.params.HttpMethodParams;
 //import org.apache.commons.httpclient.protocol.Protocol;
 //import org.apache.commons.httpclient.protocol.ProtocolSocketFactory;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.utils.URIBuilder;
-import org.apache.http.client.utils.URLEncodedUtils;
+//import org.apache.commons.lang3.StringUtils;
+//import org.apache.http.NameValuePair;
+//import org.apache.http.client.utils.URIBuilder;
+//import org.apache.http.client.utils.URLEncodedUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

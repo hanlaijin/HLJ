@@ -4,12 +4,6 @@ package com.hlj.common.todo;
  * Created by hanlaijin@xiaomi.com on 18-5-25.
  */
 
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.math.NumberUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import redis.clients.jedis.JedisCluster;
-
 /**
  * @author wangzhigang
  * @since 2018.03.12
