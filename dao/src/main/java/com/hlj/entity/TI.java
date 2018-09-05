@@ -54,4 +54,13 @@ public class TI implements Serializable {
     public void setB(Integer b) {
         this.b = b;
     }
+
+    @Override
+    public String toString() {
+        return "TI{" +
+                "id=" + id +
+                ", a=" + a +
+                ", b=" + b +
+                '}';
+    }
 }

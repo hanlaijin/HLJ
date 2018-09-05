@@ -33,7 +33,7 @@
     <aop:aspectj-autoproxy proxy-target-class="true"/>
 
     <mvc:interceptors>
-        <bean class="com.hlj.interceptor.RequestInterceptor"/>
+        <bean class="com.hlj.common.interceptor.RequestInterceptor"/>
     </mvc:interceptors>
 
 

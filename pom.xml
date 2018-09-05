@@ -19,9 +19,8 @@
         <module>common</module>
         <module>rootpom</module>
         <module>dao</module>
-        <module>redis</module>
-        <module>thrift/thrift-iface</module>
-        <module>thrift/thrift-service</module>
-        <module>thrift/thrift-common</module>
+        <module>rpc</module>
+        <module>scheduler</module>
+        <module>z-test</module>
     </modules>
 </project>

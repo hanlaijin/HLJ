@@ -1,12 +1,13 @@
 package com.hlj.service;
 
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.hlj.common.api.PingAPI;
 import com.hlj.common.dtos.response.Response;
-//import okhttp3.OkHttpClient;
+import okhttp3.OkHttpClient;
 import org.springframework.stereotype.Service;
-//import retrofit2.Call;
-//import retrofit2.Retrofit;
-//import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.Call;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -20,19 +21,26 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Service
 public class PingService {
 
+    @Reference(url = "dubbo://127.0.0.1:20880")
+    private RPCService rpcService;
+
+    public String rpc() {
+        return rpcService.ping();
+    }
+
     private static AtomicInteger count = new AtomicInteger(1);
 
     public static void retrofit() throws Exception {
-//        OkHttpClient httpClient = new OkHttpClient.Builder().build();
-//        PingAPI pingAPI = new Retrofit.Builder()
-//                .baseUrl("http://localhost:8080")
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .client(httpClient)
-//                .build()
-//                .create(PingAPI.class);
-//        Call<Response> call = pingAPI.ping("fk1", "fk2", 3L);
-//        Response response = call.execute().body();
-//        System.out.println(response);
+        OkHttpClient httpClient = new OkHttpClient.Builder().build();
+        PingAPI pingAPI = new Retrofit.Builder()
+                .baseUrl("http://localhost:8080")
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(httpClient)
+                .build()
+                .create(PingAPI.class);
+        Call<Response> call = pingAPI.ping("fk1", "fk2", 3L);
+        Response response = call.execute().body();
+        System.out.println(response);
     }
 
     public static void call() {

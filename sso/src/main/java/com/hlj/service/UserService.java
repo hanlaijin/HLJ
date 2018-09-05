@@ -27,17 +27,17 @@ public class UserService {
 
     public LoginResponse buildLoginResponse(User user) {
         LoginResponse response = new LoginResponse();
-        response.setUser(user);
-        List<LoginDto> dtos = Lists.newArrayList();
-        List<Role> roles = null;
-        for (Role role : roles) {
-            LoginDto dto = new LoginDto();
-            dto.setRole(role);
-            List<Function> functions = null;
-            dto.setFunctionList(FunctionDto.build(functions));
-            dtos.add(dto);
-        }
-        response.setPermissions(dtos);
+//        response.setUser(user);
+//        List<LoginDto> dtos = Lists.newArrayList();
+//        List<Role> roles = null;
+//        for (Role role : roles) {
+//            LoginDto dto = new LoginDto();
+//            dto.setRole(role);
+//            List<Function> functions = null;
+//            dto.setFunctionList(FunctionDto.build(functions));
+//            dtos.add(dto);
+//        }
+//        response.setPermissions(dtos);
         return response;
     }
 }

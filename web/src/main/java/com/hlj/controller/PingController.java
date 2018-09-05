@@ -1,5 +1,6 @@
 package com.hlj.controller;
 
+import com.hlj.common.annotation.NeedAOP;
 import com.hlj.common.dtos.PingRequest;
 import com.hlj.common.dtos.response.Response;
 import com.hlj.common.utils.ResponseUtil;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.request.async.DeferredResult;
 
 import javax.annotation.Resource;
 
@@ -25,13 +27,31 @@ public class PingController {
     @Resource
     private PingService pingService;
 
+    @NeedAOP
     @GetMapping(value = "/ping", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public Response ping() {
-        return ResponseUtil.success(name + "中文");
+        log.info("----------------------------[ping]{}", pingService.rpc());
+        return ResponseUtil.success(name + ",中文,");
+    }
+
+    @NeedAOP
+    @GetMapping(value = "/asyncping", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public DeferredResult<Response> asyncping() {
+        DeferredResult<Response> result = new DeferredResult<Response>();
+        new Thread(() -> {
+            try {
+                log.info("----------------------------[asyncping sleep]");
+                Thread.sleep(3000);
+                result.setResult(ResponseUtil.success(name + ",中文,"));
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }).start();
+        return result;
     }
 
     @RequestMapping(value = "/get", method = {RequestMethod.GET})
-    public Response<String> get(PingRequest ping){
+    public Response<String> get(PingRequest ping) {
         log.info("ping request = {}", ping);
         pingService.call();
         return ResponseUtil.success();
