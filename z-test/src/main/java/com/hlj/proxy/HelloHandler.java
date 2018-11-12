@@ -29,5 +29,6 @@ public class HelloHandler implements InvocationHandler {
         HelloHandler handler = new HelloHandler(new HelloImpl());
         Hello hello = (Hello) handler.getInstince();
         hello.hello();
+        hello.world();
     }
 }

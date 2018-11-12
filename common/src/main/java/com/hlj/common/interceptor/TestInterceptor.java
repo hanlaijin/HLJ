@@ -3,6 +3,7 @@ package com.hlj.common.interceptor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
+import org.springframework.web.servlet.AsyncHandlerInterceptor;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -16,13 +17,11 @@ import java.util.Map;
  */
 @Slf4j
 @Component
-public class TestInterceptor implements HandlerInterceptor {
+public class TestInterceptor implements AsyncHandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        log.info("--------------[preHandle request type ={}]", request.getDispatcherType().name());
-        request.setAttribute("k", "v");
-        log.info("--------------[thread={},{}]", Thread.currentThread().getId(), request.getSession().getId());
+        log.info("--------------[preHandle]");
         return true;
     }
 
@@ -34,7 +33,11 @@ public class TestInterceptor implements HandlerInterceptor {
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, @Nullable Exception ex) throws Exception {
-        log.info("--------------[afterCompletion request type ={}]", request.getDispatcherType().name());
-        log.info("--------------[thread={},{}]", Thread.currentThread().getId(), request.getSession().getId());
+        log.info("--------------[afterCompletion]");
+    }
+
+    @Override
+    public void afterConcurrentHandlingStarted(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        log.info("--------------[afterConcurrentHandlingStarted]");
     }
 }

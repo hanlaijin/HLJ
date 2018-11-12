@@ -16,4 +16,9 @@ public class ResponseUtil {
         return new Response(error.getCode(), error.getMessage());
     }
 
+    public static Response error(int code, String msg) {
+        return new Response(code, msg);
+    }
+
+
 }

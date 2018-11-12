@@ -11,6 +11,6 @@ import org.springframework.stereotype.Component;
 public class RPCServiceImpl implements RPCService {
     @Override
     public String ping() {
-        return "dubbo rpc call provider";
+        return "dubbo rpc 呵呵";
     }
 }

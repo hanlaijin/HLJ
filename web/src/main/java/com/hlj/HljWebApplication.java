@@ -5,6 +5,7 @@ import com.alibaba.dubbo.spring.boot.annotation.EnableDubboConfiguration;
 import com.hlj.service.PingService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 
 @SpringBootApplication
@@ -12,6 +13,6 @@ import org.springframework.context.ConfigurableApplicationContext;
 public class HljWebApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(HljWebApplication.class, args);
+		ApplicationContext context = SpringApplication.run(HljWebApplication.class, args);
 	}
 }

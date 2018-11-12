@@ -24,23 +24,23 @@ public class PingController {
     @Value("${com.hlj.properties}")
     private String name;
 
-    @Resource
-    private PingService pingService;
+//    @Resource
+//    private PingService pingService;
 
     @NeedAOP
     @GetMapping(value = "/ping", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public Response ping() {
-        log.info("----------------------------[ping]{}", pingService.rpc());
-        return ResponseUtil.success(name + ",中文,");
+    public Response ping() throws Exception {
+//        pingService.rpc()
+        return ResponseUtil.success(name);
     }
 
-    @NeedAOP
+//    @NeedAOP
     @GetMapping(value = "/asyncping", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public DeferredResult<Response> asyncping() {
         DeferredResult<Response> result = new DeferredResult<Response>();
         new Thread(() -> {
             try {
-                log.info("----------------------------[asyncping sleep]");
+//                log.info("----------------------------[asyncping sleep]");
                 Thread.sleep(3000);
                 result.setResult(ResponseUtil.success(name + ",中文,"));
             } catch (InterruptedException e) {
@@ -53,7 +53,15 @@ public class PingController {
     @RequestMapping(value = "/get", method = {RequestMethod.GET})
     public Response<String> get(PingRequest ping) {
         log.info("ping request = {}", ping);
-        pingService.call();
+//        pingService.call();
         return ResponseUtil.success();
     }
+
+    @RequestMapping("/test")
+    public DeferredResult<String> test() {
+        DeferredResult<String> result = new DeferredResult();
+
+        return result;
+    }
+
 }
