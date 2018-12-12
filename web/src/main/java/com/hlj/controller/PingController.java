@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.async.DeferredResult;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 
 
@@ -24,17 +25,25 @@ public class PingController {
     @Value("${com.hlj.properties}")
     private String name;
 
-//    @Resource
-//    private PingService pingService;
+    @Resource
+    private PingService pingService;
+
+    static {
+        log.info("********************");
+    }
+
+    @PostConstruct
+    public void init() {
+        log.info("-------------------********************");
+    }
 
     @NeedAOP
     @GetMapping(value = "/ping", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public Response ping() throws Exception {
-//        pingService.rpc()
-        return ResponseUtil.success(name);
+        return ResponseUtil.success(name + " " + pingService.rpc());
     }
 
-//    @NeedAOP
+    //    @NeedAOP
     @GetMapping(value = "/asyncping", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public DeferredResult<Response> asyncping() {
         DeferredResult<Response> result = new DeferredResult<Response>();
@@ -54,6 +63,7 @@ public class PingController {
     public Response<String> get(PingRequest ping) {
         log.info("ping request = {}", ping);
 //        pingService.call();
+
         return ResponseUtil.success();
     }
 

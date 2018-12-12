@@ -14,28 +14,23 @@ public class Important {
 
     public static void main(String[] args) {
         Important important = new Important();
-//        int a[] = new int[]{1, 1, 2};
-//        System.out.println(important.permuteUnique(a));
+        String[] arr = new String[]{"32", "1", "44"};
+        int[] a = new int[]{1, 2, 3};
+        important.cmn(arr, 2);
+        important.permuteCore(a, 0);
     }
 
-    public Set<List<Integer>> permuteUnique(int[] nums) {
-        Set<List<Integer>> set = new HashSet<>();
-        permuteCore(nums, 0, set);
-        return set;
-    }
-
-    public void permuteCore(int[] nums, int start, Set<List<Integer>> set) {
+    public void permuteCore(int[] nums, int start) {
         if (start == nums.length) {
             List<Integer> tl = new ArrayList<>();
             for (int i : nums) {
                 tl.add(i);
             }
             System.out.println(tl);
-            set.add(tl);
         } else {
             for (int i = start; i < nums.length; i++) {
                 swap(nums, start, i);
-                permuteCore(nums, start + 1, set);
+                permuteCore(nums, start + 1);
                 swap(nums, start, i);
             }
         }
@@ -45,6 +40,24 @@ public class Important {
         int temp = nums[start];
         nums[start] = nums[end];
         nums[end] = temp;
+    }
+
+    public void cmn(String[] arr, int n) {
+        if (arr == null || n < 0) {
+            return;
+        }
+        for (int i = 0; i < arr.length - n + 1; i++) {
+            cmnCore(1, arr[i], i, arr, n);
+        }
+    }
+
+    private void cmnCore(int count, String s, int index, String[] arr, int n) {
+        if (count == n) {
+            System.out.println(s);
+        }
+        for (int i = index + 1; i < arr.length; i++) {
+            cmnCore(count + 1, s + arr[i], i, arr, n);
+        }
     }
 
 }

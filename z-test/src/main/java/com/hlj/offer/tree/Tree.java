@@ -1,12 +1,8 @@
 package com.hlj.offer.tree;
 
-import javafx.scene.transform.Rotate;
-
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
-import java.util.StringJoiner;
 
 /**
  * Created by hanlaijin@xiaomi.com on 18-10-11.
@@ -28,11 +24,38 @@ public class Tree {
         node4.left = node6;
         node3.left = node7;
         node7.right = node8;
+        TreeNode node = new TreeNode(2);
+        node.left = new TreeNode(4);
+        node.right = new TreeNode(5);
         Tree tree = new Tree();
-//        System.out.println(tree.FindAllPath(root, new ArrayList<Integer>(), new ArrayList<ArrayList<Integer>>()));
-        int[] p = new int[]{1, 2, 4, 7, 3, 5, 6, 8};
-        int[] m = new int[]{4, 7, 2, 1, 5, 3, 8, 6};
-//        System.out.println(tn);
+        System.out.println(tree.isContain(root,node));
+    }
+
+    public boolean isContain(TreeNode big, TreeNode small) {
+        boolean contain = false;
+        if (big.val == small.val) {
+            contain = isEquals(big, small);
+        }
+        if (!contain) {
+            contain = isEquals(big.left, small);
+        }
+        if (!contain) {
+            contain = isEquals(big.right, small);
+        }
+        return contain;
+    }
+
+    private boolean isEquals(TreeNode big, TreeNode small) {
+        if (small == null) {
+            return true;
+        }
+        if (big == null) {
+            return false;
+        }
+        if (big.val != small.val) {
+            return false;
+        }
+        return isEquals(big.left, small.left) && isEquals(big.right, small.right);
     }
 
     // 从根到叶子节点生成的所有数字之和

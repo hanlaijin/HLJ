@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
  * Created by hanlaijin@xiaomi.com on 18-8-14.
  */
 @Component
-@Service
+@Service(timeout = 5000)
 public class RPCServiceImpl implements RPCService {
     @Override
     public String ping() {

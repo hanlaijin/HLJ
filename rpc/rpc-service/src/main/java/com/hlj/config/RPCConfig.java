@@ -18,10 +18,11 @@ public class RPCConfig {
         return RedisFactory.getJedis();
     }
 
+    //dubbo
     @Bean
     public ApplicationConfig applicationConfig() {
         ApplicationConfig applicationConfig = new ApplicationConfig();
-        applicationConfig.setName("provider-test");
+        applicationConfig.setName("dubbo-server");
         return applicationConfig;
     }
 

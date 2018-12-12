@@ -26,7 +26,6 @@ public class Node {
             list.addToTail(head, i);
         }
         System.out.println(head);
-        Node newHead = list.reverze(head);
-        System.out.println(newHead);
+        System.out.println(list.getLastKNode(head,3));
     }
 }

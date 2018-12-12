@@ -48,10 +48,11 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         return registration;
     }
 
+    // dubbo
     @Bean
     public ApplicationConfig applicationConfig() {
         ApplicationConfig applicationConfig = new ApplicationConfig();
-        applicationConfig.setName("consumer-test");
+        applicationConfig.setName("dubbo-client");
         return applicationConfig;
     }
 
@@ -66,7 +67,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     public RegistryConfig registryConfig() {
         RegistryConfig registryConfig = new RegistryConfig();
         registryConfig.setAddress("zookeeper://127.0.0.1:2181");
-        registryConfig.setClient("curator");
+//        registryConfig.setClient("curator");
         return registryConfig;
     }
 }

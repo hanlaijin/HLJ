@@ -56,12 +56,12 @@ public class MyList {
     }
 
     public int getLastKNode(Node head, int k) {
-        if (head == null) {
+        if (head == null || k < 0) {
             return -1;
         }
         Node temp = head;
         for (int i = 0; i < k - 1; i++) {
-            if (temp.next != null) {
+            if (temp != null) {
                 temp = temp.next;
             } else {
                 return -1;
